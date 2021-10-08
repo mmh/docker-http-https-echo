@@ -9,6 +9,17 @@ var concat = require('concat-stream');
 const { promisify } = require('util');
 const sleep = promisify(setTimeout);
 
+var fs = require('fs');
+var util = require('util');
+var log_file = fs.createWriteStream(__dirname + '/logs/debug.log', {flags : 'w'});
+var log_stdout = process.stdout;
+
+// write to a logfile besides the console
+console.log = function(d) { //
+  log_file.write(util.format(d) + '\n');
+  log_stdout.write(util.format(d) + '\n');
+};
+
 app.set('json spaces', 2);
 app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
 

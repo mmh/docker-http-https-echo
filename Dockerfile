@@ -20,6 +20,8 @@ RUN set -ex \
 FROM node:14-alpine AS final
 WORKDIR /app
 COPY --from=build /app /app
+RUN mkdir /app/logs
+RUN chown 1000 /app/logs
 ENV HTTP_PORT=8080 HTTPS_PORT=8443
 EXPOSE $HTTP_PORT $HTTPS_PORT
 USER 1000
