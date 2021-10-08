@@ -11,7 +11,7 @@ const sleep = promisify(setTimeout);
 
 var fs = require('fs');
 var util = require('util');
-var log_file = fs.createWriteStream(__dirname + '/logs/debug.log', {flags : 'w'});
+var log_file = fs.createWriteStream(__dirname + '/logs/debug.log', {flags : 'a'});
 var log_stdout = process.stdout;
 
 // write to a logfile besides the console
